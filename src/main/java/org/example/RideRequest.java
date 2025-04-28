@@ -15,6 +15,25 @@ public class RideRequest {
         this.passenger = passenger;
         this.requestStatus = "Pending";
     }
+    public String getPickupLocation() {
+        return pickupLocation;
+    }
+
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getRequestStatus() {
+        return requestStatus;
+    }
+
+    public Passenger getPassenger() {
+        return passenger;
+    }
+
+    public int getRequestID() {
+        return requestID;
+    }
 
     public void assignDriver(Driver driver) {
         this.driver = driver;

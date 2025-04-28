@@ -16,12 +16,60 @@ public class Payment {
     }
 
     public boolean processPayment() {
-        this.status = "Paid";
-        return true;
+        if (this.amount > 0) {
+            this.status = "Paid";
+            return true;
+        }
+        return false;
+    }
+    public boolean refund() {
+        if (this.amount > 0) {
+            this.status = "Refunded";
+            return true;
+        }
+        return false;
     }
 
-    public boolean refund() {
-        this.status = "Refunded";
-        return true;
+    public boolean cancelPayment() {
+        if (this.status.equals("Pending")) {
+            this.status = "Cancelled";
+            return true;
+        }
+        return false;
+    }
+    public boolean isPaymentSuccessful() {
+        return this.status.equals("Paid");
+    }
+    public boolean isRefunded() {
+        return this.status.equals("Refunded");
+    }
+    public boolean isCancelled() {
+        return this.status.equals("Cancelled");
+    }
+    public boolean isPending() {
+        return this.status.equals("Pending");
+    }
+    public boolean isPaymentFailed() {
+        return this.status.equals("Failed");
+    }
+    // ✅ Add getters
+    public double getAmount() {
+        return amount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public LocalDate getPaymentDate() {
+        return paymentDate;
+    }
+
+    public String getMethod() {
+        return method;
+    }
+
+    public int getPaymentID() {
+        return paymentID;
     }
 }

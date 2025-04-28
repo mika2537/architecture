@@ -28,4 +28,7 @@ public class User {
         this.location = location;
         System.out.println("Profile updated for: " + userID);
     }
+    public int getUserID() {
+        return userID;
+    }
 }

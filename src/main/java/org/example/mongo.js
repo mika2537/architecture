@@ -1,6 +1,6 @@
-const { MongoClient } = require("mongodb");
+import { MongoClient } from "mongodb";
 
-const url = "mongodb://localhost:27017"; // MongoDB connection URL
+const url = "mongodb://localhost:27018"; // MongoDB connection URL
 const dbName = "taxiSharingSystem"; // Database name
 
 // Create a new MongoClient
