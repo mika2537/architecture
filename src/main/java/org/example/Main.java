@@ -15,7 +15,7 @@ public class Main {
 
     public static void main(String[] args) {
         // Connect to MongoDB
-        mongoClient = MongoClients.create("mongodb://localhost:27017");
+        mongoClient = MongoClients.create("mongodb://localhost:27018");
         database = mongoClient.getDatabase("taxiSharingSystem");
 
         // Get collections
@@ -60,26 +60,26 @@ public class Main {
 
     // Create a ride request and store it in MongoDB
     public static void createRideRequest(RideRequest rideRequest) {
-        Document rideRequestDoc = new Document("pickupLocation", rideRequest.pickupLocation) // Assuming fields are public
-                .append("destination", rideRequest.destination) // Assuming fields are public
-                .append("requestStatus", rideRequest.requestStatus) // Assuming fields are public
-                .append("passengerID", rideRequest.passenger.userID) // Assuming fields are public
-                .append("requestID", rideRequest.requestID); // Assuming fields are public
+        Document rideRequestDoc = new Document("pickupLocation", rideRequest.getPickupLocation()) // Assuming fields are public
+                .append("destination", rideRequest.getDestination()) // Accessing via getter
+                .append("requestStatus", rideRequest.getRequestStatus()) // Accessing via getter
+                .append("passengerID", rideRequest.getPassenger().getUserID()) // Accessing via getter
+                .append("requestID", rideRequest.getRequestID()); // Accessing via getter
 
         ridesCollection.insertOne(rideRequestDoc);
-        System.out.println("Ride request created: " + rideRequest.requestID);
+        System.out.println("Ride request created: " + rideRequest.getRequestID());
     }
 
     // Process payment and store it in MongoDB
     public static void processPayment(Payment payment) {
-        Document paymentDoc = new Document("amount", payment.amount) // Assuming fields are public
-                .append("status", payment.status) // Assuming fields are public
-                .append("paymentDate", payment.paymentDate) // Assuming fields are public
-                .append("method", payment.method) // Assuming fields are public
-                .append("paymentID", payment.paymentID); // Assuming fields are public
+        Document paymentDoc = new Document("amount", payment.getAmount()) // Accessing via getter
+                .append("status", payment.getStatus()) // Accessing via getter
+                .append("paymentDate", payment.getPaymentDate()) // Accessing via getter
+                .append("method", payment.getMethod()) // Accessing via getter
+                .append("paymentID", payment.getPaymentID()); // Accessing via getter
 
         paymentsCollection.insertOne(paymentDoc);
-        System.out.println("Payment processed: " + payment.paymentID);
+        System.out.println("Payment processed: " + payment.getPaymentID());
     }
 
     private static int generateUserID() {
